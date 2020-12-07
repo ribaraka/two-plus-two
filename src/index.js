@@ -23,19 +23,24 @@ function isNumber(value) {
   if (!value) {
     return false;
   }
-  // return Number.isFinite(parseInt(value));
-  return +value;
+
+  const number = Number(value);
+  if (Number.isNaN(number)) {
+    return false;
+  }
+
+  return number;
 }
 
 button.addEventListener('click', () => {
-  if (!isNumber(+input1.value)) {
+  if (!isNumber(input1.value)) {
     firstInputError.textContent = 'Это не число';
     document.body.insertBefore(firstInputError, input2);
   } else {
     firstInputError.remove();
   }
 
-  if (!isNumber(+input2.value)) {
+  if (!isNumber(input2.value)) {
     secondInputError.textContent = 'Это не число';
     document.body.insertBefore(secondInputError, button);
   } else {
